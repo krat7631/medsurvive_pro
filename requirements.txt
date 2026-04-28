@@ -1,0 +1,8 @@
+streamlit==1.46.1
+pandas==2.3.0
+lifelines==0.30.0
+matplotlib==3.10.3
+shap==0.48.0
+plotly==6.0.1
+pytest==8.4.1
+ruff==0.12.0
