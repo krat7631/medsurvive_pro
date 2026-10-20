@@ -1,0 +1,176 @@
+{
+  "dataset": "German Breast Cancer Study Group 2 (GBSG2)",
+  "source": "German Breast Cancer Study Group 2 trial (Schumacher et al., 1994); distributed with scikit-survival.",
+  "patients": 686,
+  "events": 299,
+  "censored_share": 0.5641,
+  "time_unit": "days",
+  "event_meaning": "recurrence or death",
+  "treatment": {
+    "column": "horTh",
+    "reference": "no",
+    "randomized": null,
+    "arms": [
+      {
+        "group": "no",
+        "patients": 440,
+        "events": 205,
+        "median_time": 1528.0
+      },
+      {
+        "group": "yes",
+        "patients": 246,
+        "events": 94,
+        "median_time": 2018.0
+      }
+    ],
+    "logrank": {
+      "test_statistic": 8.564780853539034,
+      "p_value": 0.003427282264745802,
+      "degrees_of_freedom": 1
+    },
+    "hazard_ratios": {
+      "reference": "no",
+      "crude": {
+        "horTh_yes": {
+          "hazard_ratio": 0.6948847871537287,
+          "ci_lower": 0.5438444309341748,
+          "ci_upper": 0.8878731489228531,
+          "p_value": 0.003602323304505831
+        }
+      },
+      "adjusted": {
+        "horTh_yes": {
+          "hazard_ratio": 0.7073152979351773,
+          "ci_lower": 0.5492175786039413,
+          "ci_upper": 0.9109230115409466,
+          "p_value": 0.007301367599737159
+        }
+      },
+      "adjusted_for": [
+        "age",
+        "estrec",
+        "menostat",
+        "pnodes",
+        "progrec",
+        "tgrade",
+        "tsize"
+      ]
+    }
+  },
+  "proportional_hazards": {
+    "age": {
+      "test_statistic": 2.7889,
+      "p_value": 0.0949,
+      "violates_assumption": false
+    },
+    "estrec": {
+      "test_statistic": 1.4248,
+      "p_value": 0.2326,
+      "violates_assumption": false
+    },
+    "horTh_yes": {
+      "test_statistic": 0.2088,
+      "p_value": 0.6477,
+      "violates_assumption": false
+    },
+    "menostat_Post": {
+      "test_statistic": 0.0051,
+      "p_value": 0.9432,
+      "violates_assumption": false
+    },
+    "pnodes": {
+      "test_statistic": 0.5734,
+      "p_value": 0.4489,
+      "violates_assumption": false
+    },
+    "progrec": {
+      "test_statistic": 1.0797,
+      "p_value": 0.2988,
+      "violates_assumption": false
+    },
+    "tgrade_II": {
+      "test_statistic": 1.8325,
+      "p_value": 0.1758,
+      "violates_assumption": false
+    },
+    "tgrade_III": {
+      "test_statistic": 5.8638,
+      "p_value": 0.0155,
+      "violates_assumption": true
+    },
+    "tsize": {
+      "test_statistic": 0.1808,
+      "p_value": 0.6707,
+      "violates_assumption": false
+    }
+  },
+  "cross_validation": {
+    "folds": 5,
+    "repeats": 3,
+    "patients": 686,
+    "events": 299,
+    "models": {
+      "km": {
+        "harrell_c": {
+          "mean": 0.5,
+          "std": 0.0
+        },
+        "uno_c": {
+          "mean": 0.5,
+          "std": 0.0
+        },
+        "integrated_brier": {
+          "mean": 0.1751,
+          "std": 0.0071
+        }
+      },
+      "cox": {
+        "harrell_c": {
+          "mean": 0.6795,
+          "std": 0.0395
+        },
+        "uno_c": {
+          "mean": 0.6795,
+          "std": 0.0444
+        },
+        "integrated_brier": {
+          "mean": 0.1571,
+          "std": 0.0091
+        }
+      },
+      "rsf": {
+        "harrell_c": {
+          "mean": 0.6914,
+          "std": 0.0251
+        },
+        "uno_c": {
+          "mean": 0.6896,
+          "std": 0.0273
+        },
+        "integrated_brier": {
+          "mean": 0.1524,
+          "std": 0.009
+        }
+      }
+    }
+  },
+  "rsf_shap_importance": {
+    "pnodes": 29.8969,
+    "progrec": 20.6061,
+    "estrec": 9.0306,
+    "age": 6.4899,
+    "tsize": 6.2302,
+    "horTh=yes": 5.9179,
+    "tgrade=II": 2.2387,
+    "tgrade=III": 1.5485,
+    "menostat=Post": 0.5569
+  },
+  "runtime_minutes": 7.3,
+  "environment": {
+    "python": "3.11.11",
+    "lifelines": "0.30.3",
+    "scikit-survival": "0.28.0"
+  },
+  "quick": false
+}
