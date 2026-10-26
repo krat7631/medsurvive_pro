@@ -1,0 +1,168 @@
+{
+  "dataset": "Veterans' Administration Lung Cancer Trial",
+  "source": "Kalbfleisch & Prentice (1980), The Statistical Analysis of Failure Time Data; distributed with scikit-survival.",
+  "patients": 137,
+  "events": 128,
+  "censored_share": 0.0657,
+  "time_unit": "days",
+  "event_meaning": "death",
+  "treatment": {
+    "column": "Treatment",
+    "reference": "standard",
+    "randomized": true,
+    "arms": [
+      {
+        "group": "standard",
+        "patients": 69,
+        "events": 64,
+        "median_time": 103.0
+      },
+      {
+        "group": "test",
+        "patients": 68,
+        "events": 64,
+        "median_time": 52.0
+      }
+    ],
+    "logrank": {
+      "test_statistic": 0.008227343202350308,
+      "p_value": 0.9277272333400758,
+      "degrees_of_freedom": 1
+    },
+    "hazard_ratios": {
+      "reference": "standard",
+      "crude": {
+        "Treatment_test": {
+          "hazard_ratio": 1.0178560135347008,
+          "ci_lower": 0.7143438704071855,
+          "ci_upper": 1.4503251266063244,
+          "p_value": 0.9219600814178215
+        }
+      },
+      "adjusted": {
+        "Treatment_test": {
+          "hazard_ratio": 1.342595606476498,
+          "ci_lower": 0.8938785073479767,
+          "ci_upper": 2.0165637138742367,
+          "p_value": 0.15577043448241037
+        }
+      },
+      "adjusted_for": [
+        "Age_in_years",
+        "Celltype",
+        "Karnofsky_score",
+        "Months_from_Diagnosis",
+        "Prior_therapy"
+      ]
+    }
+  },
+  "proportional_hazards": {
+    "Age_in_years": {
+      "test_statistic": 5.4637,
+      "p_value": 0.0194,
+      "violates_assumption": true
+    },
+    "Celltype_large": {
+      "test_statistic": 0.0192,
+      "p_value": 0.8898,
+      "violates_assumption": false
+    },
+    "Celltype_smallcell": {
+      "test_statistic": 2.9738,
+      "p_value": 0.0846,
+      "violates_assumption": false
+    },
+    "Celltype_squamous": {
+      "test_statistic": 3.276,
+      "p_value": 0.0703,
+      "violates_assumption": false
+    },
+    "Karnofsky_score": {
+      "test_statistic": 13.4544,
+      "p_value": 0.0002,
+      "violates_assumption": true
+    },
+    "Months_from_Diagnosis": {
+      "test_statistic": 2.8819,
+      "p_value": 0.0896,
+      "violates_assumption": false
+    },
+    "Prior_therapy_yes": {
+      "test_statistic": 4.638,
+      "p_value": 0.0313,
+      "violates_assumption": true
+    },
+    "Treatment_test": {
+      "test_statistic": 0.0612,
+      "p_value": 0.8046,
+      "violates_assumption": false
+    }
+  },
+  "cross_validation": {
+    "folds": 5,
+    "repeats": 3,
+    "patients": 137,
+    "events": 128,
+    "models": {
+      "km": {
+        "harrell_c": {
+          "mean": 0.5,
+          "std": 0.0
+        },
+        "uno_c": {
+          "mean": 0.5,
+          "std": 0.0
+        },
+        "integrated_brier": {
+          "mean": 0.2243,
+          "std": 0.0129
+        }
+      },
+      "cox": {
+        "harrell_c": {
+          "mean": 0.7079,
+          "std": 0.0367
+        },
+        "uno_c": {
+          "mean": 0.7057,
+          "std": 0.0362
+        },
+        "integrated_brier": {
+          "mean": 0.1726,
+          "std": 0.0175
+        }
+      },
+      "rsf": {
+        "harrell_c": {
+          "mean": 0.6852,
+          "std": 0.0566
+        },
+        "uno_c": {
+          "mean": 0.6822,
+          "std": 0.0557
+        },
+        "integrated_brier": {
+          "mean": 0.1951,
+          "std": 0.0149
+        }
+      }
+    }
+  },
+  "rsf_shap_importance": {
+    "Karnofsky_score": 15.774,
+    "Celltype=smallcell": 7.1891,
+    "Celltype=squamous": 5.8179,
+    "Celltype=large": 2.7833,
+    "Age_in_years": 1.7763,
+    "Treatment=test": 1.5653,
+    "Months_from_Diagnosis": 1.2173,
+    "Prior_therapy=yes": 0.8676
+  },
+  "runtime_minutes": 1.8,
+  "environment": {
+    "python": "3.11.11",
+    "lifelines": "0.30.3",
+    "scikit-survival": "0.28.0"
+  },
+  "quick": false
+}
